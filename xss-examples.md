@@ -3,7 +3,7 @@
 ### Print alert
 ```html
 <script>
-  alert('You've been pwned!')
+  alert('You got pwned!')
 </script>
 ```
 
