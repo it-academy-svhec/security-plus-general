@@ -13,6 +13,8 @@ Accept the image terms for Kali
 az vm image terms accept --urn kali-linux:kali:kali-2024-4:2024.4.1
 ```
 
+Reference: https://learn.microsoft.com/en-us/marketplace/programmatic-deploy-of-marketplace-products
+
 ## Azure VM Configuration
 
 - Operating system/image: Kali 2024.4
