@@ -3,6 +3,13 @@ This document covers the setup of Kali VMs in Azure.
 
 ## Azure VM Configuration
 
+- Operating system/image: Kali 2024.4
+- Size: Standard B1s
+- VM architecture: x64
+- VNet: same as other student VMs
+- Subnet: unique subnet for the VM
+- 
+
 ## Kali Configuration
 
 Kali archive signing keys changed as of April 2025 and must be manually updated on new installations.
