@@ -1,6 +1,13 @@
 ## Overview
 This document covers the setup of Kali VMs in Azure.
 
+## Terraform
+
+Accept the image terms for Kali
+```bash
+az vm image terms accept --urn kali-linux:kali:kali-2024-4:2024.4.1
+```
+
 ## Azure VM Configuration
 
 - Operating system/image: Kali 2024.4
