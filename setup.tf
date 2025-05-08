@@ -1,3 +1,12 @@
+provider "azurerm" {
+  features {}
+}
+
+resource "azurerm_resource_group" "kali" {
+  name     = "student-kali"
+  location = "East US 2"
+}
+
 variable "vm_count" {
   default = 2
 }
