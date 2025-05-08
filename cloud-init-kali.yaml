@@ -1,16 +1,26 @@
 #cloud-config
 package_update: true
 packages:
-  - xfce4
+  - kali-desktop-xfce
   - xfce4-goodies
   - xrdp
 
 runcmd:
+  # Update signing key and package repositories
+  - wget https://archive.kali.org/archive-keyring.gpg -O /usr/share/keyrings/kali-archive-keyring.gpg
+  - apt update
+  
+  # Enable and start xrdp and xrdp-sesman services
+  - systemctl enable --now xrdp xrdp-sesman
+  
+  # Configure .xsession for XFCE
   - echo "startxfce4" > /home/kali/.xsession
+  - chmod +x /home/kali/.xsession
   - chown kali:kali /home/kali/.xsession
-  - systemctl enable xrdp
-  - systemctl start xrdp
-  - systemctl enable xrdp-sesman
-  - systemctl start xrdp-sesman
+  
+  # Set permissions for xrdp keys
   - chown xrdp:xrdp /etc/xrdp/*.pem
   - chmod 600 /etc/xrdp/key.pem
+  
+  # Restart xrdp service to apply changes
+  - systemctl restart xrdp
