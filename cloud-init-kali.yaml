@@ -1,0 +1,16 @@
+#cloud-config
+package_update: true
+packages:
+  - xfce4
+  - xfce4-goodies
+  - xrdp
+
+runcmd:
+  - echo "startxfce4" > /home/kali/.xsession
+  - chown kali:kali /home/kali/.xsession
+  - systemctl enable xrdp
+  - systemctl start xrdp
+  - systemctl enable xrdp-sesman
+  - systemctl start xrdp-sesman
+  - chown xrdp:xrdp /etc/xrdp/*.pem
+  - chmod 600 /etc/xrdp/key.pem
