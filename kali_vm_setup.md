@@ -53,3 +53,9 @@ Kali archive signing keys changed as of April 2025 and must be manually updated 
     echo startxfce4 > ~/.xsession
     chmod +x ~/.xsession
     ```
+
+1. Restart service
+    
+    ```bash
+    sudo systemctl restart xrdp
+    ```
