@@ -8,7 +8,7 @@ This document covers the setup of Kali VMs in Azure.
 - VM architecture: x64
 - VNet: same as other student VMs
 - Subnet: unique subnet for the VM
-- Open ports: 22 adn 3389
+- Open ports: 22 and 3389
 
 ## Kali Configuration
 
