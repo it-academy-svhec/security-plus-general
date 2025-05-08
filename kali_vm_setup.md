@@ -53,24 +53,3 @@ Kali archive signing keys changed as of April 2025 and must be manually updated 
     echo startxfce4 > ~/.xsession
     chmod +x ~/.xsession
     ```
-### **4. Fix Permissions on TLS Key (if needed)**
-
-If you saw this error before:
-
-```
-Cannot read private key file /etc/xrdp/key.pem: Permission denied
-```
-
-Fix it by setting correct permissions:
-
-```bash
-sudo chown xrdp:xrdp /etc/xrdp/key.pem
-sudo chown xrdp:xrdp /etc/xrdp/cert.pem
-sudo chmod 600 /etc/xrdp/key.pem
-```
-
-Then restart xrdp:
-
-```bash
-sudo systemctl restart xrdp
-```
