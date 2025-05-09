@@ -1,9 +1,10 @@
 provider "azurerm" {
   features {}
+  subscription_id = "10150ec8-4a52-423c-a87b-5ccbb4a27cf4"
 }
 
 variable "vm_count" {
-  default = 2
+  default = 1
 }
 
 resource "azurerm_resource_group" "student_kali" {
@@ -31,8 +32,20 @@ resource "azurerm_network_security_group" "student_kali_nsg" {
   resource_group_name = azurerm_resource_group.student_kali.name
 
   security_rule {
-    name                       = "Allow-RDP"
+    name                       = "Allow-SSH"
     priority                   = 1001
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "22"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "Allow-RDP"
+    priority                   = 1002
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
@@ -53,7 +66,7 @@ resource "azurerm_public_ip" "student_kali_ip" {
   name                = "student-kali-ip-${count.index + 1}"
   location            = azurerm_resource_group.student_kali.location
   resource_group_name = azurerm_resource_group.student_kali.name
-  allocation_method   = "Dynamic"
+  allocation_method   = "Static"
 }
 
 resource "azurerm_network_interface" "student_kali_nic" {
@@ -70,15 +83,25 @@ resource "azurerm_network_interface" "student_kali_nic" {
   }
 }
 
+resource "azurerm_marketplace_agreement" "kali" {
+  publisher = "kali-linux"
+  offer     = "kali"
+  plan      = "kali-2024-4"
+}
+
 resource "azurerm_linux_virtual_machine" "student_kali" {
   count               = var.vm_count
   name                = "student-kali-${count.index + 1}"
   resource_group_name = azurerm_resource_group.student_kali.name
   location            = azurerm_resource_group.student_kali.location
   size                = "Standard_B2s"
+  computer_name       = "student-kali-${count.index + 1}"
 
   admin_username = "ita"
   admin_password = "820ITAcademy"
+
+  disable_password_authentication = false
+
 
   network_interface_ids = [
     azurerm_network_interface.student_kali_nic[count.index].id
@@ -92,9 +115,19 @@ resource "azurerm_linux_virtual_machine" "student_kali" {
   source_image_reference {
     publisher = "kali-linux"
     offer     = "kali"
-    sku       = "kali"
-    version   = "latest"
+    sku       = "kali-2024-4"
+    version   = "2024.4.1"
   }
+
+  plan {
+    name      = "kali-2024-4"
+    publisher = "kali-linux"
+    product   = "kali"
+  }
+
+  depends_on = [azurerm_marketplace_agreement.kali]
+
+  provision_vm_agent = true
 
   custom_data = filebase64("cloud-init-kali.yaml")
 }
