@@ -1,5 +1,7 @@
 #cloud-config
 package_update: true
+bootcmd:
+ - [ cloud-init-per, once, wait-network, sh, -c, "while ! ping -c1 archive.ubuntu.com; do sleep 1; done" ]
 runcmd:
   # Download and install the Kali archive keyring if missing
   - wget https://archive.kali.org/archive-keyring.gpg -O /usr/share/keyrings/kali-archive-keyring.gpg
