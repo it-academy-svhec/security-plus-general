@@ -1,5 +1,6 @@
 #cloud-config
 package_update: false
+hostname: ${hostname}
 
 runcmd:
   # Download and install the Kali archive keyring if missing
