@@ -94,7 +94,7 @@ resource "azurerm_linux_virtual_machine" "student_kali" {
   name                = "student-kali-${count.index + 1}"
   resource_group_name = azurerm_resource_group.student_kali.name
   location            = azurerm_resource_group.student_kali.location
-  size                = "Standard_B2s"
+  size                = "Standard_D2as_v4"
   computer_name       = "student-kali-${count.index + 1}"
 
   admin_username = "ita"
@@ -129,5 +129,7 @@ resource "azurerm_linux_virtual_machine" "student_kali" {
 
   provision_vm_agent = true
 
-  custom_data = filebase64("cloud-init-kali.yaml")
+  custom_data = base64encode(templatefile("${path.module}/cloud-init-kali.yaml", {
+    hostname = "student-kali-${count.index + 1}"
+  }))
 }
