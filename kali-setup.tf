@@ -102,7 +102,6 @@ resource "azurerm_linux_virtual_machine" "student_kali" {
 
   disable_password_authentication = false
 
-
   network_interface_ids = [
     azurerm_network_interface.student_kali_nic[count.index].id
   ]
@@ -128,6 +127,10 @@ resource "azurerm_linux_virtual_machine" "student_kali" {
   depends_on = [azurerm_marketplace_agreement.kali]
 
   provision_vm_agent = true
+
+  boot_diagnostics {
+    enabled = true
+  }
 
   custom_data = base64encode(templatefile("${path.module}/cloud-init-kali.yaml", {
     hostname = "student-kali-${count.index + 1}"
