@@ -1,10 +1,9 @@
 #cloud-config
-package_update: true
+package_update: false
 
 runcmd:
   # Download and install the Kali archive keyring if missing
   - wget https://archive.kali.org/archive-keyring.gpg -O /usr/share/keyrings/kali-archive-keyring.gpg
-  - echo "deb [signed-by=/usr/share/keyrings/kali-archive-keyring.gpg] http://http.kali.org/kali kali-rolling main contrib non-free" > /etc/apt/sources.list.d/kali.list
 
   # Update package lists
   - apt-get update
