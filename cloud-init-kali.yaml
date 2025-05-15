@@ -9,8 +9,7 @@ runcmd:
   - apt-get update
 
   # Install Kali XFCE desktop and XRDP
-  - apt-get install -y kali-archive-keyring
-  - apt-get install -y kali-desktop-xfce xrdp
+  - DEBIAN_FRONTEND=noninteractive apt-get install -y kali-desktop-xfce xrdp
 
   # Enable and start XRDP
   - systemctl enable --now xrdp xrdp-sesman
