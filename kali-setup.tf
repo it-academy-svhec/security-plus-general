@@ -128,10 +128,6 @@ resource "azurerm_linux_virtual_machine" "student_kali" {
 
   provision_vm_agent = true
 
-  boot_diagnostics {
-    enabled = true
-  }
-
   custom_data = base64encode(templatefile("${path.module}/cloud-init-kali.yaml", {
     hostname = "student-kali-${count.index + 1}"
   }))
