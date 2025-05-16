@@ -16,5 +16,6 @@ runcmd:
   - systemctl enable --now xrdp xrdp-sesman
 
   # Set up default session GUI
-  - echo "startlxde" > ~/.xsession
-  - chmod +x ~/.xsession
+  - echo "startlxde" > /home/kali/.xsession
+  - chmod +x /home/kali/.xsession
+  - chown kali:kali /home/kali/.xsession
