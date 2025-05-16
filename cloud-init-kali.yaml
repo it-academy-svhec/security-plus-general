@@ -9,16 +9,12 @@ runcmd:
   # Update package lists
   - apt-get update
 
-  # Install Kali XFCE desktop and XRDP
-  - DEBIAN_FRONTEND=noninteractive apt-get install -y kali-desktop-xfce xrdp
+  # Install GUIs and remote access servers
+  - DEBIAN_FRONTEND=noninteractive apt-get install -y kali-desktop-xfce lxde openbox obconf xrdp x2goserver x2goserver-xsession
 
   # Enable and start XRDP
   - systemctl enable --now xrdp xrdp-sesman
 
-  # Setup XFCE session for login
-  - echo "startxfce4" > /home/kali/.xsession
-  - chmod +x /home/kali/.xsession
-  - chown kali:kali /home/kali/.xsession
-
-  # Restart XRDP to finalize setup
-  - systemctl restart xrdp
+  # Set up default session GUI
+  - echo "startlxde" > ~/.xsession
+  - chmod +x ~/.xsession
