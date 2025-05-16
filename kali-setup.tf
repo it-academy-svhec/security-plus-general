@@ -94,13 +94,14 @@ resource "azurerm_linux_virtual_machine" "student_kali" {
   name                = "student-kali-${count.index + 1}"
   resource_group_name = azurerm_resource_group.student_kali.name
   location            = azurerm_resource_group.student_kali.location
-  size                = "Standard_D2as_v4"
+  size                = "Standard_B2s" #Standard_D2as_v5
   computer_name       = "student-kali-${count.index + 1}"
 
   admin_username = "ita"
   admin_password = "820ITAcademy"
 
   disable_password_authentication = false
+
 
   network_interface_ids = [
     azurerm_network_interface.student_kali_nic[count.index].id
