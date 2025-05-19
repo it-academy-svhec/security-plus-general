@@ -14,4 +14,21 @@ Terraform is a cloud resource build tool with a declarative syntax, which means 
 
 1. Run `terraform plan` and review the expected resources to be created
 
-1. Run `terraform apply` and enter `yes` to build the resources
+1. Run `terraform apply` and enter `yes` to build the resources]
+
+## Troubleshooting
+### Resources Conflicts
+![image](https://github.com/user-attachments/assets/f7424474-e878-409f-8230-3de7bfd526f6)
+
+If you see an error message related to a resource already being created, try importing the resource context to Terraform.
+
+Use the following command to import:
+
+```
+terraform import <path to object> <path to exact resource>
+```
+
+Here's an example:
+```
+terraform import azurerm_marketplace_agreement.kali /subscriptions/10150ec8-4a52-423c-a87b-5ccbb4a27cf4/providers/Microsoft.MarketplaceOrdering/agreements/kali-linux/offers/kali/plans/kali-2024-4
+```
