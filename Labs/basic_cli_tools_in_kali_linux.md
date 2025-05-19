@@ -18,7 +18,7 @@
 Kali Linux is a distribution that offers many penetration tools.  Kali Linux can be run completely off of a USB without having to actually install it onto a system with Live Boot. This is useful, because as a future hacker, you will want to be able to quickly spin up Kali when you need to attack, and leave no traces that you were ever there.
 
 ## Cloud VM Access
-1. Refer to Student Instructions - Accessing Azure VMs
+1. Review student instructions https://github.com/it-academy-svhec/security-plus-general/blob/main/student_instructions.md
 
 1. You should have access to one Kali Linux VM with a hostname matching the pattern: student-kali-x
 
