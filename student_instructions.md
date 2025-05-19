@@ -29,3 +29,5 @@ Microsoft Azure Virtual Machines is a cloud service for running and managing vir
     f. Click OK to save the session
 
 1. Double-click the session to start it
+
+1. Click `Yes` when prompted to trust the new host key
