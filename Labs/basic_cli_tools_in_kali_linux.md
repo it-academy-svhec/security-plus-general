@@ -489,14 +489,6 @@ The “ipconfig” command displays network information for your adapters. It se
     ipconfig /all
     ```
 
-    ```
-    ipconfig /all
-    ```
-
-    ```
-    ipconfig /all
-    ```
-
 ### Tracert
 Tracert serves the same purpose as traceroute but is made for Windows. Run the following to display every router hop your packet goes through to arrive at google.com
 
