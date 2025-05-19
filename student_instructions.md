@@ -3,7 +3,7 @@ Microsoft Azure Virtual Machines is a cloud service for running and managing vir
 
 ## Prerequisites
 1. Install X2Go Client on your local machine https://wiki.x2go.org/doku.php/download:start
-
+1. Ensure you have ssh by running `ssh -V` in Command Prompt or a Terminal window on your local machine
 
 ## Accessing your VM
 1. Review the VM credentials:
