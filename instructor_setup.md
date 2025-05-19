@@ -16,6 +16,11 @@ Terraform is a cloud resource build tool with a declarative syntax, which means 
 
 1. Run `terraform apply` and enter `yes` to build the resources]
 
+## Deprovisioning VMs
+1. Log into Azure and open a Cloud Shell
+
+1. Run `terraform destroy`
+
 ## Troubleshooting
 ### Resources Conflicts
 ![image](https://github.com/user-attachments/assets/f7424474-e878-409f-8230-3de7bfd526f6)
