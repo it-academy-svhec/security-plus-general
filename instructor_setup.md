@@ -32,3 +32,5 @@ Here's an example:
 ```
 terraform import azurerm_marketplace_agreement.kali /subscriptions/10150ec8-4a52-423c-a87b-5ccbb4a27cf4/providers/Microsoft.MarketplaceOrdering/agreements/kali-linux/offers/kali/plans/kali-2024-4
 ```
+
+Another potential solution is to delete the conflicting resources.
