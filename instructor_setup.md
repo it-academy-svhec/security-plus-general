@@ -21,6 +21,12 @@ Terraform is a cloud resource build tool with a declarative syntax, which means 
 
 1. Run `terraform destroy`
 
+## VNet Configuration
+
+Student VMs are attached to the same VNet, which has an associated NSG. The NSG is configured with the following rule to prevent outbound access to the Internet. This is stateful and allows outbound traffic to return to clients for SSH, RDP, etc.
+
+![image](https://github.com/user-attachments/assets/11989e5c-ba1d-44b0-a098-76aa10f89227)
+
 ## Troubleshooting
 ### Resources Conflicts
 ![image](https://github.com/user-attachments/assets/f7424474-e878-409f-8230-3de7bfd526f6)
