@@ -7,8 +7,8 @@ Microsoft Azure Virtual Machines is a cloud service for running and managing vir
 
 ## Accessing your VM
 1. Review the VM credentials:
-- Username: `ita`
-- Password: `820ITAcademy`
+    - Username: `ita`
+    - Password: `820ITAcademy`
 
 1. Determine the IP address of your VM
 
