@@ -10,7 +10,7 @@ runcmd:
   - apt-get update
 
   # Install GUIs and remote access servers
-  - DEBIAN_FRONTEND=noninteractive apt-get install -y kali-desktop-xfce lxde openbox obconf xrdp x2goserver x2goserver-xsession apache2 wireshark nmap python2
+  - DEBIAN_FRONTEND=noninteractive apt-get install -y kali-desktop-xfce lxde openbox obconf xrdp x2goserver x2goserver-xsession apache2 wireshark nmap python2 snort
 
   # Install Zenmap
   - wget https://nmap.org/dist/zenmap-7.93-1.noarch.rpm
