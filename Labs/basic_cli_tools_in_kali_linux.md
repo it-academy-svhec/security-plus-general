@@ -55,7 +55,7 @@ Before exploring the various penetration tools that Kali has to offer, it’s a 
 1. Now switch into the "Documents" directory
 
    ```bash
-    pwd
+    cd Documents
    ```
 
 1. To confirm you are in the `Documents` directory, use a command to print the current working directory
