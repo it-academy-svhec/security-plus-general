@@ -10,7 +10,13 @@ runcmd:
   - apt-get update
 
   # Install GUIs and remote access servers
-  - DEBIAN_FRONTEND=noninteractive apt-get install -y kali-desktop-xfce lxde openbox obconf xrdp x2goserver x2goserver-xsession
+  - DEBIAN_FRONTEND=noninteractive apt-get install -y kali-desktop-xfce lxde openbox obconf xrdp x2goserver x2goserver-xsession apache2 wireshark nmap python2
+
+  # Install Zenmap
+  - wget https://nmap.org/dist/zenmap-7.93-1.noarch.rpm
+  - apt-get install alien
+  - alien zenmap-7.93-1.noarch.rpm
+  - sudo dpkg -i zenmap_7.93-2_all.deb
 
   # Enable and start XRDP
   - systemctl enable --now xrdp xrdp-sesman
