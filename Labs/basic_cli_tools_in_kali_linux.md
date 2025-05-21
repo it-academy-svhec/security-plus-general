@@ -51,13 +51,12 @@ Before exploring the various penetration tools that Kali has to offer, it’s a 
     ls
     ```
 
-1. You should not see any directories displayed. Let’s create a new directory named `Documents`.
 
-    ```bash
-    mkdir Documents
-    ```
+1. Now switch into the "Documents" directory
 
-1. Now switch into this directory
+   ```bash
+    pwd
+   ```
 
 1. To confirm you are in the `Documents` directory, use a command to print the current working directory
 
