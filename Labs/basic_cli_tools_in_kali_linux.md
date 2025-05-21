@@ -29,7 +29,7 @@ Kali Linux is a distribution that offers many penetration tools.  Kali Linux can
 ## Basic Navigation
 Before exploring the various penetration tools that Kali has to offer, it’s a good idea to get familiar with some of the common Linux commands.
 
-1. Click the blue Kali icon in the top left, search “Terminal”, and open the Terminal Emulator application 
+1. Click the blue Kali icon in the bottom left, select Usual Applications > System > QTerminal
 
 1. The prompt should resemble the following:
 
