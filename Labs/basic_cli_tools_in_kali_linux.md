@@ -231,7 +231,7 @@ Your Azure VM is currently connected to a Virtual Network (VNet). This means it 
    * Have another user SSH into your VM:
 
      ```bash
-     ssh azureuser@<vm-ip-or-hostname>
+     ssh ita@<vm-ip-or-hostname>
      ```
 
      * They may need to confirm with `yes`, then enter the password or use an SSH key.
@@ -240,7 +240,7 @@ Your Azure VM is currently connected to a Virtual Network (VNet). This means it 
 1. Have them create a file on your VM to confirm they are connected:
 
    ```bash
-   touch /home/azureuser/Desktop/success.txt
+   touch /home/ita/Desktop/success.txt
    ```
 
 1. On your VM, verify that the file exists on the Desktop.
