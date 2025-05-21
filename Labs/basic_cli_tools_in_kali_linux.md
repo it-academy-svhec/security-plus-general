@@ -303,9 +303,9 @@ Your Azure VM is currently connected to a Virtual Network (VNet). This means it 
 
 Log files store system events and can be used for troubleshooting or investigating security incidents. Linux stores most logs in the `/var/log` directory.
 
-1. To view the contents of the boot log file, use the `cat` command as follows. Troubleshoot the error message you obtain when trying to run the command:
+1. To view the contents of the syslog file, use the `cat` command as follows. Troubleshoot the error message you obtain when trying to run the command:
     ```bash
-    cat /var/log/boot.log
+    cat /var/log/syslog
     ```
 
 1. Log files can get very long. The oldest files are found at the top, and the newest files are found at the bottom.
@@ -313,22 +313,22 @@ Log files store system events and can be used for troubleshooting or investigati
 1. The `head` command displays the first 10 lines of a file. This is useful if you would like to see the oldest logs. Run the following:
 
     ```bash
-    sudo head /var/log/boot.log
+    sudo head /var/log/syslog
     ```
 
 1. By default, head only displays the first 10 lines. To specify how many lines to display, use the `-n` parameter. To see the first 20 lines of the file, run:
 
     ```bash
-    sudo head -n 20 /var/log/boot.log
+    sudo head -n 20 /var/log/syslog
     ```
 
 1. The `tail` command displays the last 10 lines of a file by default. This is useful if you would like to see the latest entries in a log file. Run the following:
 
     ```bash
-    sudo tail /var/log/boot.log
+    sudo tail /var/log/syslog
     ```
 
-1. The tail command supports the `-n` parameter as well; run a command to display the last 15 lines of the `/var/log/boot.log` file.
+1. The tail command supports the `-n` parameter as well; run a command to display the last 15 lines of the `/var/log/syslog` file.
 
 ### Journalctl, logger, and grep
 
