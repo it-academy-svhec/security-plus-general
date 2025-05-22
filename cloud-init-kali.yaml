@@ -25,3 +25,11 @@ runcmd:
   - echo "startlxde" > /home/ita/.xsession
   - chmod +x /home/ita/.xsession
   - chown ita:ita /home/ita/.xsession
+  
+# Install alternate DHCP client
+  #- apt-get install -y isc-dhcp-client
+  #- apt-get purge -y dhcpcd5
+  #- systemctl stop dhcpcd || true
+  #- systemctl disable dhcpcd || true
+  #- echo -e "auto eth0\niface eth0 inet dhcp" > /etc/network/interfaces.d/eth0.cfg
+  #- systemctl restart networking
