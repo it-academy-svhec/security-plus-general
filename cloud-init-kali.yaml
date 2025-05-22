@@ -3,6 +3,10 @@ package_update: false
 hostname: ${hostname}
 
 runcmd:
+  # Set hostname
+  - echo ${hostname} | sudo tee /etc/hostname
+  - sudo sed -i '/^127\.0\.1\.1/c\127.0.1.1\t${hostname}' /etc/hosts
+  
   # Download and install the Kali archive keyring if missing
   - wget https://archive.kali.org/archive-keyring.gpg -O /usr/share/keyrings/kali-archive-keyring.gpg
 
