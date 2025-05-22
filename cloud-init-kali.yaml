@@ -18,6 +18,12 @@ write_files:
     permissions: '0644'
 
 runcmd:
+  # Download and install the Kali archive keyring if missing
+  - wget https://archive.kali.org/archive-keyring.gpg -O /usr/share/keyrings/kali-archive-keyring.gpg
+
+  # Update package lists
+  - apt-get update
+  
   # Set hostname
   - echo ${hostname} | sudo tee /etc/hostname
   - sudo sed -i '/^127\.0\.1\.1/c\127.0.1.1\t${hostname}' /etc/hosts
@@ -38,12 +44,6 @@ runcmd:
   - systemctl daemon-reload
   - systemctl enable --now walinuxagent
   - systemctl start walinuxagent
-  
-  # Download and install the Kali archive keyring if missing
-  - wget https://archive.kali.org/archive-keyring.gpg -O /usr/share/keyrings/kali-archive-keyring.gpg
-
-  # Update package lists
-  - apt-get update
 
   # Install GUIs and remote access servers
   - DEBIAN_FRONTEND=noninteractive apt-get install -y kali-desktop-xfce lxde openbox obconf xrdp x2goserver x2goserver-xsession apache2 wireshark nmap python2 snort hping3 iproute2
