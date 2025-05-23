@@ -20,9 +20,15 @@ write_files:
 runcmd:
   # Download and install the Kali archive keyring if missing
   - wget https://archive.kali.org/archive-keyring.gpg -O /usr/share/keyrings/kali-archive-keyring.gpg
+  
+  # Connect to temporary Debian repo
+  - echo "deb http://deb.debian.org/debian bookworm main" | sudo tee /etc/apt/sources.list.d/debian-temp.list
+  - sudo sh -c 'echo -e "Package: xautolock\nPin: release a=bookworm\nPin-Priority: 990" > /etc/apt/preferences.d/pin-xautolock'
+  # Update package list
+  - sudo apt-get update
+  # Install xautolock
+  - sudo apt-get install -y xautolock
 
-  # Update package lists
-  - apt-get update
   
   # Set hostname
   - echo ${hostname} | sudo tee /etc/hostname
