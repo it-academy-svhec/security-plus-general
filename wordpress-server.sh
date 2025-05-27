@@ -69,5 +69,7 @@ sudo -u www-data sed -i 's/username_here/$WP_USER/' /srv/www/wordpress/wp-config
 sudo -u www-data sed -i 's/password_here/$WB_PASS/' /srv/www/wordpress/wp-config.php
 
 # Enable commands from remote systems
-sudo sed -i 's/^bind-address\s*=.*/bind-address = 0.0.0.0/' /etc/mysql/mysql.conf.d/mysqld.cnf
-sudo systemctl restart mysql
+ufw allow 3306
+sed -i 's/^bind-address\s*=.*/bind-address = 0.0.0.0/' /etc/mysql/mysql.conf.d/mysqld.cnf
+systemctl restart mysql
+
