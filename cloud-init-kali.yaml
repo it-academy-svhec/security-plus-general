@@ -34,7 +34,7 @@ runcmd:
   - echo "TMOUT=1200" >> /etc/profile
  # Add auto shutdown script for shell sessions
   - echo -e '#!/bin/bash\nnum_users=$(who | cut -d " " -f 1 | wc -l)\nif [ "$num_users" -eq 0 ]; then\n  /bin/systemctl poweroff --now\nfi' > /etc/cron.hourly/shutdown_if_idle && chmod +x /etc/cron.hourly/shutdown_if_idle
-  - sudo chmod +x /etc/cron.hourly/shutdown_if_idle
+
 
 
   
