@@ -23,21 +23,23 @@ runcmd:
   
   # Connect to temporary Debian repo
   - echo "deb http://deb.debian.org/debian bookworm main" | sudo tee /etc/apt/sources.list.d/debian-temp.list
-  - sudo sh -c 'echo -e "Package: xautolock\nPin: release a=bookworm\nPin-Priority: 990" > /etc/apt/preferences.d/pin-xautolock'
+  - echo -e "Package: xautolock\nPin: release a=bookworm\nPin-Priority: 990" | sudo tee /etc/apt/preferences.d/pin-xautolock > /dev/null
+
   # Update package list
   - sudo apt-get update
+  
   # Install xautolock
   - sudo apt-get install -y xautolock
+  
   # Add xautolock config to /etc/profile
   - echo -e '\nif [ -n "$DISPLAY" ]; then\n    xautolock -time 3 -locker "sudo /sbin/shutdown now" &\nfi' | sudo tee -a /etc/profile > /dev/null
+  
   # Add TMOUT Variable to /et/profile
   - echo "TMOUT=1200" >> /etc/profile
- # Add auto shutdown script for shell sessions
+  
+  # Add auto shutdown script for shell sessions
   - echo -e '#!/bin/bash\nnum_users=$(who | cut -d " " -f 1 | wc -l)\nif [ "$num_users" -eq 0 ]; then\n  /bin/systemctl poweroff --now\nfi' > /etc/cron.hourly/shutdown_if_idle && chmod +x /etc/cron.hourly/shutdown_if_idle
 
-
-
-  
   # Set hostname
   - echo ${hostname} | sudo tee /etc/hostname
   - sudo sed -i '/^127\.0\.1\.1/c\127.0.1.1\t${hostname}' /etc/hosts
