@@ -36,10 +36,10 @@ runcmd:
   # Add xautolock config to /etc/profile
   - 'echo "if [ -n "\$DISPLAY" ]; then" >> /etc/profile'
   - 'echo "xautolock -time 3 -locker \"sudo /sbin/shutdown now\" &" >> /etc/profile'
-  - 'echo "fi" >> /etc/profile
+  - 'echo "fi" >> /etc/profile'
   
   # Add TMOUT Variable to /et/profile
-  - echo "export TMOUT=1200" >> /etc/profile
+  - 'echo "export TMOUT=1200" >> /etc/profile'
   
   # Add auto shutdown script for shell sessions
   - echo -e '#!/bin/bash\nnum_users=$(who | cut -d " " -f 1 | wc -l)\nif [ "$num_users" -eq 0 ]; then\n  /bin/systemctl poweroff --now\nfi' > /.shutdown_if_idle && chmod +x /.shutdown_if_idle
