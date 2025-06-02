@@ -34,13 +34,16 @@ runcmd:
   - sudo apt-get install -y xautolock
   
   # Add xautolock config to /etc/profile
-  - echo -e '\nif [ -n "$DISPLAY" ]; then\n    xautolock -time 3 -locker "sudo /sbin/shutdown now" &\nfi' | sudo tee -a /etc/profile > /dev/null
+  - 'echo "if [ -n "$DISPLAY" ]; then" >> /etc/profile'
+  - 'echo "xautolock -time 3 -locker \"sudo /sbin/shutdown now\" &" >> /etc/profile'
+  - 'echo "fi" >> /etc/profile
   
   # Add TMOUT Variable to /et/profile
-  - echo "TMOUT=1200" >> /etc/profile
+  - echo "export TMOUT=1200" >> /etc/profile
   
   # Add auto shutdown script for shell sessions
-  - echo -e '#!/bin/bash\nnum_users=$(who | cut -d " " -f 1 | wc -l)\nif [ "$num_users" -eq 0 ]; then\n  /bin/systemctl poweroff --now\nfi' > /etc/cron.hourly/shutdown_if_idle && chmod +x /etc/cron.hourly/shutdown_if_idle
+  - echo -e '#!/bin/bash\nnum_users=$(who | cut -d " " -f 1 | wc -l)\nif [ "$num_users" -eq 0 ]; then\n  /bin/systemctl poweroff --now\nfi' > /.shutdown_if_idle && chmod +x /.shutdown_if_idle
+  - echo "*/10 * * * * /.shutdown_if_idle >> /etc/crontab"
 
   # Set hostname
   - echo ${hostname} | sudo tee /etc/hostname
