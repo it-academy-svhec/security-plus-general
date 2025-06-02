@@ -54,6 +54,18 @@ resource "azurerm_network_security_group" "student_kali_nsg" {
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
+
+  security_rule {
+    name                       = "InternetTraffic"
+    priority                   = 1012
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "Internet"
+  }
 }
 
 resource "azurerm_subnet_network_security_group_association" "student_kali_assoc" {
