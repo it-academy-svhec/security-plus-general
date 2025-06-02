@@ -23,7 +23,7 @@ runcmd:
   
   # Connect to temporary Debian repo
   - echo "deb http://deb.debian.org/debian bookworm main" | sudo tee /etc/apt/sources.list.d/debian-temp.list
-  - echo -e "Package: xautolock\nPin: release a=bookworm\nPin-Priority: 990" | sudo tee /etc/apt/preferences.d/pin-xautolock > /dev/null
+  - 'echo -e "Package: xautolock\nPin: release a=bookworm\nPin-Priority: 990" | sudo tee /etc/apt/preferences.d/pin-xautolock > /dev/null'
 
   # Update package list
   - sudo apt-get update
