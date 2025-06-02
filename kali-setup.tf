@@ -55,6 +55,7 @@ resource "azurerm_network_security_group" "student_kali_nsg" {
     destination_address_prefix = "*"
   }
 
+  # Set to Deny in Azure Portal to block Internet traffic 
   security_rule {
     name                       = "InternetTraffic"
     priority                   = 1012
