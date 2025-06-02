@@ -34,7 +34,7 @@ runcmd:
   - sudo apt-get install -y xautolock
   
   # Add xautolock config to /etc/profile
-  - 'echo "if [ -n "$DISPLAY" ]; then" >> /etc/profile'
+  - 'echo "if [ -n "\$DISPLAY" ]; then" >> /etc/profile'
   - 'echo "xautolock -time 3 -locker \"sudo /sbin/shutdown now\" &" >> /etc/profile'
   - 'echo "fi" >> /etc/profile
   
