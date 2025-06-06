@@ -14,6 +14,8 @@ The OVA file can be downloaded from https://sourceforge.net/projects/metasploita
 1. Create a VM in your chosen platform with the virtual disk
 
 ### Windows 11 Procedure
+1. Locate the OVA file and extract the contents with 7Zip
+
 1. Download StarWind V2V Converter: https://www.starwindsoftware.com/starwind-v2v-converter
 
 1. Select the VMDK file as a source
@@ -27,7 +29,15 @@ There is an option to upload directly to Azure which we have not tested yet.
 ## Uploading to Azure
 The next step is to upload the VHD file to an Azure Storage Container.
 
-1. Create a new storage account with mostly default settings. 
+1. Create or use existing storage account. https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
+
+1. Create or use an existing Container. https://learn.microsoft.com/en-us/azure/storage/blobs/blob-containers-portal
+
+1. Use Azure CLI to upload VHD to the corresponding Container
+
+    ```bash
+    az storage blob upload --account-name itavmimages --container-name vm-images --name metasploitable3-ubuntu1404.vhd --type page --file D:\Metasploitable3-ub1404-disk001.vhd
+    ```
 
 ## Reference
 Jira ticket: https://svhec.atlassian.net/jira/software/projects/SEC7/boards/7?selectedIssue=SEC7-56
