@@ -52,5 +52,10 @@ The next step is to upload the VHD file to an Azure Storage Container.
       --source "<url>"
     ```
 
+## Creating a VM from the image
+Review the basic steps here: https://learn.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-portal
+
+Click See all images and select your image from My images
+
 ## Reference
 Jira ticket: https://svhec.atlassian.net/jira/software/projects/SEC7/boards/7?selectedIssue=SEC7-56
