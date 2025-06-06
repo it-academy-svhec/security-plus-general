@@ -55,7 +55,11 @@ The next step is to upload the VHD file to an Azure Storage Container.
 ## Creating a VM from the image
 Review the basic steps here: https://learn.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-portal
 
-Click See all images and select your image from My images
+Deployment notes:
+- Click See all images and select your image from My images
+- Make sure to chose the correct VNet that contains the other student VMs
+- Most of the other default settings are fine
+- This process takes about 15 minutes and may appear to fail. If so, check the VM under Virtual Machines and make sure it's in the "Running" state.
 
 ## Reference
 Jira ticket: https://svhec.atlassian.net/jira/software/projects/SEC7/boards/7?selectedIssue=SEC7-56
