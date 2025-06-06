@@ -26,7 +26,7 @@ The OVA file can be downloaded from https://sourceforge.net/projects/metasploita
 
 There is an option to upload directly to Azure which we have not tested yet.
 
-## Uploading to Azure
+## Uploading VHD to Azure
 The next step is to upload the VHD file to an Azure Storage Container.
 
 1. Create or use existing storage account. https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview
@@ -37,6 +37,19 @@ The next step is to upload the VHD file to an Azure Storage Container.
 
     ```bash
     az storage blob upload --account-name itavmimages --container-name vm-images --name metasploitable3-ubuntu1404.vhd --type page --file D:\Metasploitable3-ub1404-disk001.vhd
+    ```
+1. Check the Azure Portal for the uploaded BLOB
+
+## Creating an Azure VM Image
+
+1. Find the URL for the BLOB in the Azure Portal and replace the `<url>` in the command below
+    ```bash
+    az image create \
+      --resource-group <resourceGroup> \
+      --name <imageName> \
+      --os-type Linux \
+      --generation 1 \
+      --source "<url>"
     ```
 
 ## Reference
