@@ -57,14 +57,19 @@ Review the basic steps here: https://learn.microsoft.com/en-us/azure/virtual-mac
 
 Deployment notes:
 - Click See all images and select your image from My images
+- Select a username and password so Azure doesn't mess with SSH keys, but this will not be usable anyway due to compatibility issues
+- Set licensing type to Other
+- Select Premium SSH
+- Select the next size up for 64 GB since Azure charges for a minimum anyway
 - Make sure to chose the correct VNet that contains the other student VMs
-- Most of the other default settings are fine
-- This process takes about 15 minutes and may appear to fail. If so, check the VM under Virtual Machines and make sure it's in the "Running" state.
+- This process takes about 15 minutes and may appear to fail. If so, check the VM under Virtual Machines and make sure it's in the "Running" state. You have a narrow window of time to disable Azure Agent with the instructions below before the VM becomes inaccessible due to incompatibilities.
 
 ### Disabling Azure Agent
-The Azure Agent is not compatible with Metasploitable since it's based on Ubuntu 14.04 and must be disabled to avoid losing SSH access to the VM.
+The Azure Agent is not compatible with Metasploitable since it's based on Ubuntu 14.04 and must be disabled to avoid losing SSH access to the VM. If you wait too long, Azure will try to provision the VM with the agent, which results in resetting the SSH configure among othe incompatible actions.
 
 1. Watch Boot Diagnostics on the newly created VM for the moment when the OS screenshot shows the login prompt. You have to log in as quickly as possible to prevent Azure from interfering with the VM.
+
+1. SSH via the public or private IP address and log in with vagrant:vagrant
 
 1. Install the Windows Azure Agent
 
