@@ -61,5 +61,41 @@ Deployment notes:
 - Most of the other default settings are fine
 - This process takes about 15 minutes and may appear to fail. If so, check the VM under Virtual Machines and make sure it's in the "Running" state.
 
+### Disabling Azure Agent
+The Azure Agent is not compatible with Metasploitable since it's based on Ubuntu 14.04 and must be disabled to avoid losing SSH access to the VM.
+
+1. Watch Boot Diagnostics on the newly created VM for the moment when the OS screenshot shows the login prompt. You have to log in as quickly as possible to prevent Azure from interfering with the VM.
+
+1. Install the Windows Azure Agent
+
+    ```
+    sudo apt-get update
+    sudo apt-get install walinuxagent
+    ```
+1. Open the config file with `sudo nano /etc/waagent.conf` and ensure the following variables are set
+
+    ```
+    # Disable automatic root password deletion
+    Provisioning.DeleteRootPassword=n
+    
+    # Prevent regenerating SSH host keys on reboot
+    Provisioning.RegenerateSshHostKeyPair=n
+    
+    # Disable cloud-init usage (Ubuntu 14.04 doesn't support cloud-init well)
+    Provisioning.UseCloudInit=n
+    
+    # Disable automatic provisioning if you want full manual control
+    Provisioning.Enabled=y    # or n if you want to disable provisioning entirely
+    
+    # Enable decoding and running custom data scripts if you plan to use Custom Data
+    Provisioning.DecodeCustomData=y
+    ```
+
+1. Restart the agent
+
+    ```
+    sudo service walinuxagent restart
+    ```
+
 ## Reference
 Jira ticket: https://svhec.atlassian.net/jira/software/projects/SEC7/boards/7?selectedIssue=SEC7-56
