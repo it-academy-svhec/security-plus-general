@@ -64,6 +64,9 @@ Deployment notes:
 - Make sure to chose the correct VNet that contains the other student VMs
 - This process takes about 15 minutes and may appear to fail. If so, check the VM under Virtual Machines and make sure it's in the "Running" state. You have a narrow window of time to disable Azure Agent with the instructions below before the VM becomes inaccessible due to incompatibilities.
 
+![image](https://github.com/user-attachments/assets/1fdd782f-ae28-4502-bec2-328a1f3e6a21)
+
+
 ### Disabling Azure Agent
 The Azure Agent is not compatible with Metasploitable since it's based on Ubuntu 14.04 and must be disabled to avoid losing SSH access to the VM. If you wait too long, Azure will try to provision the VM with the agent, which results in resetting the SSH configure among othe incompatible actions.
 
