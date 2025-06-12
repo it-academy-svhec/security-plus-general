@@ -62,13 +62,13 @@ Deployment notes:
 - Select Premium SSH
 - Select the next size up for 64 GB since Azure charges for a minimum anyway
 - Make sure to chose the correct VNet that contains the other student VMs
-- This process takes about 15 minutes and may appear to fail. If so, check the VM under Virtual Machines and make sure it's in the "Running" state. You have a narrow window of time to disable Azure Agent with the instructions below before the VM becomes inaccessible due to incompatibilities.
+- This process takes about 15 minutes and may appear to fail. If so, check the VM under Virtual Machines and make sure it's in the "Running" state. You have a narrow window of time to configure Azure Agent with the instructions below before the VM becomes inaccessible due to incompatibilities.
 
 ![image](https://github.com/user-attachments/assets/1fdd782f-ae28-4502-bec2-328a1f3e6a21)
 
 
-### Disabling Azure Agent
-The Azure Agent is not compatible with Metasploitable since it's based on Ubuntu 14.04 and must be disabled to avoid losing SSH access to the VM. If you wait too long, Azure will try to provision the VM with the agent, which results in resetting the SSH configure among othe incompatible actions.
+### Configuring Azure Agent
+The Azure Agent is not compatible with Metasploitable since it's based on Ubuntu 14.04 and must be disabled to avoid losing SSH access to the VM. If you wait too long, Azure will try to provision the VM with the agent, which results in resetting the SSH configure among othe incompatible actions. The Azure Agent is still there to report back basic details but will avoid making breaking changes.
 
 1. Watch Boot Diagnostics on the newly created VM for the moment when the OS screenshot shows the login prompt. You have to log in as quickly as possible to prevent Azure from interfering with the VM.
 
@@ -97,7 +97,7 @@ The Azure Agent is not compatible with Metasploitable since it's based on Ubuntu
     sudo service walinuxagent restart
     ```
 
-1. Run `sudo reboot now` to restart the VM. Then make sure you can access it again. Retry this process and try deallocating it in Azure Portal to ensure you can access it reliably.
+1. Run `sudo reboot now` to restart the VM. Then make sure you can access it again. Retry this process and try deallocating it in Azure Portal to ensure you can access it reliably. You may need to do a full restart in the Azure Portal.
 
 ## Reference
 Jira ticket: https://svhec.atlassian.net/jira/software/projects/SEC7/boards/7?selectedIssue=SEC7-56
