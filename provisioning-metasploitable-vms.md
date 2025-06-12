@@ -98,7 +98,7 @@ The Azure Agent is not compatible with Metasploitable since it's based on Ubuntu
     sudo service walinuxagent restart
     ```
 
-1. Run `sudo reboot now` to restart the VM. Then make sure you can access it again. Retry this process and try deallocating it in Azure Portal to ensure you can access it reliably. You may need to do a full restart in the Azure Portal. Keep checking the Boot Diagnostics screenshot until you see the login page. You may see the loading screen for a while as the boot up process is very slow:
+1. Run `sudo reboot now` to restart the VM. Then make sure you can access it again. Retry this process and try deallocating it in Azure Portal to ensure you can access it reliably. You may need to do a full restart in the Azure Portal. Keep checking the Boot Diagnostics screenshot until you see the login page. You may see the loading screen for a while as the boot up process is very slow. The Azure Portal Restart seems to work better than reboot command in the guest OS.
 
 ![image](https://github.com/user-attachments/assets/34b6cbae-86ce-4b5d-a292-24fca7de8cff)
 
