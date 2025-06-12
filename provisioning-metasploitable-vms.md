@@ -97,5 +97,7 @@ The Azure Agent is not compatible with Metasploitable since it's based on Ubuntu
     sudo service walinuxagent restart
     ```
 
+1. Run `sudo reboot now` to restart the VM. Then make sure you can access it again. Retry this process and try deallocating it in Azure Portal to ensure you can access it reliably.
+
 ## Reference
 Jira ticket: https://svhec.atlassian.net/jira/software/projects/SEC7/boards/7?selectedIssue=SEC7-56
