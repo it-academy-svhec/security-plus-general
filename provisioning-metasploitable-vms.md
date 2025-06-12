@@ -66,6 +66,7 @@ Deployment notes:
 
 ![image](https://github.com/user-attachments/assets/1fdd782f-ae28-4502-bec2-328a1f3e6a21)
 
+## Configuring the VM
 
 ### Configuring Azure Agent
 The Azure Agent is not compatible with Metasploitable since it's based on Ubuntu 14.04 and must be disabled to avoid losing SSH access to the VM. If you wait too long, Azure will try to provision the VM with the agent, which results in resetting the SSH configure among othe incompatible actions. The Azure Agent is still there to report back basic details but will avoid making breaking changes.
@@ -98,6 +99,18 @@ The Azure Agent is not compatible with Metasploitable since it's based on Ubuntu
     ```
 
 1. Run `sudo reboot now` to restart the VM. Then make sure you can access it again. Retry this process and try deallocating it in Azure Portal to ensure you can access it reliably. You may need to do a full restart in the Azure Portal.
+
+## Setting the Hostname
+Since we cannot use cloud-init for this older version of Ubuntu, we have to manually set the hostname.
+
+1. Set the hostname with `/etc/hostname`
+
+1. Update the local DNS records in `/etc/hosts`
+
+    - Update `127.0.0.1 <defaultName>` to contain the new hostname
+    - Update `<private> <defaultName>` to contain the new hostname
+  
+1. Reboot the VM
 
 ## Reference
 Jira ticket: https://svhec.atlassian.net/jira/software/projects/SEC7/boards/7?selectedIssue=SEC7-56
