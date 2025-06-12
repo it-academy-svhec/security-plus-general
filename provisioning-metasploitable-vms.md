@@ -83,19 +83,11 @@ The Azure Agent is not compatible with Metasploitable since it's based on Ubuntu
 1. Open the config file with `sudo nano /etc/waagent.conf` and ensure the following variables are set
 
     ```
-    # Disable automatic root password deletion
+    Extensions.Enabled=n
     Provisioning.DeleteRootPassword=n
-    
-    # Prevent regenerating SSH host keys on reboot
     Provisioning.RegenerateSshHostKeyPair=n
-    
-    # Disable cloud-init usage (Ubuntu 14.04 doesn't support cloud-init well)
     Provisioning.UseCloudInit=n
-    
-    # Disable automatic provisioning if you want full manual control
     Provisioning.Enabled=y    # or n if you want to disable provisioning entirely
-    
-    # Enable decoding and running custom data scripts if you plan to use Custom Data
     Provisioning.DecodeCustomData=y
     ```
 
