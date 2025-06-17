@@ -74,3 +74,15 @@ If you want to avoid having to start up the containers each time, consider creat
     [Install]
     WantedBy=multi-user.target
     ```
+
+1. Enable the service
+
+    ```bash
+    sudo systemctl enable openvas.service
+    ```
+
+1. Restart the VM and confirm that the OpenVAS web server is available
+
+    ```
+    sudo shutdown now -r
+    ```
