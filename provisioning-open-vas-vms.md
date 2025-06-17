@@ -17,7 +17,7 @@ There is a fairly streamlined way to set this up in Docker containers. You can s
 
 1. Complete the steps in the **Install dependencies** and **Installing Docker** sections
 
-1. Then following the steps in https://greenbone.github.io/docs/latest/22.4/container/index.html#prerequisites
+1. Then following the steps in https://greenbone.github.io/docs/latest/22.4/container/index.html#setup-and-start-script
 
 1. Once you run the setup script, be patient and wait for the Docker images to download fully.
 
@@ -27,6 +27,18 @@ There is a fairly streamlined way to set this up in Docker containers. You can s
 
 1. In the Terminal, open the directory that contains the Docker Compose file
 
+1. Modify `docker-compose.yml` to contain the following for the `gsa` image. The IP address should be 0.0.0.0 instead of 127.0.0.1 to allow external access.
+
+    Original:
+    ```
+    127.0.0.1:9392:80
+    ```
+
+    Modified
+    ```
+    0.0.0.0:9392:80
+    ```
+
 1. Run the Docker containers
 
     ```
@@ -34,3 +46,7 @@ There is a fairly streamlined way to set this up in Docker containers. You can s
     ```
 
 1. Then access the web interface using another VM in the same VNet, unless you installed a GUI for the OpenVAS VM. Access the web interface at http://<open_vas_ip_or_hostname>:9392
+
+1. Enter the credentials:
+    - Username: `admin`
+    - Password: password you set when the containers were first built
