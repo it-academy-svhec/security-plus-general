@@ -50,3 +50,27 @@ There is a fairly streamlined way to set this up in Docker containers. You can s
 1. Enter the credentials:
     - Username: `admin`
     - Password: password you set when the containers were first built
+
+## Configure OpenVAS as a Service
+If you want to avoid having to start up the containers each time, consider creating a systemd service.
+
+1. Create a new service file `sudo nano /etc/systemd/system/openvas.service`
+
+1. Enter the following contents in the file. Make sure the `WorkingDirectory` path is correct.
+
+    ```
+    [Unit]
+    Description=OpenVAS Docker Compose
+    Requires=docker.service
+    After=docker.service
+    
+    [Service]
+    Type=oneshot
+    WorkingDirectory=/home/ita/greenbone-community-container
+    ExecStart=docker compose up -d
+    ExecStop=docker compose down
+    RemainAfterExit=yes
+    
+    [Install]
+    WantedBy=multi-user.target
+    ```
