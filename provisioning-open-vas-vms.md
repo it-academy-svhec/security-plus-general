@@ -23,6 +23,14 @@ There is a fairly streamlined way to set this up in Docker containers. You can s
 
 1. Then you will be prompted to set an admin password. Set the password
 
-1. You will also notice a message about how OpenVAS is loading the CVE feeds now. This can take a long time and is network and CPU intensive.
+1. You will also notice a message about how OpenVAS is loading the CVE feeds now. This can take a long time and is network and CPU intensive and you can check the progress later in the web app.
+
+1. In the Terminal, open the directory that contains the Docker Compose file
+
+1. Run the Docker containers
+
+    ```
+    docker compose up -d
+    ```
 
 1. Then access the web interface using another VM in the same VNet, unless you installed a GUI for the OpenVAS VM. Access the web interface at http://<open_vas_ip_or_hostname>:9392
