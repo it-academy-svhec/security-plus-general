@@ -95,3 +95,6 @@ You can find the status under Administration > Feeds.
 If there are issues loading feeds, considering restarting the containers or systemd service if you configured that. Another option is to recreate the images with the previous setup instructions.
 
 Here is some troubleshooting guidance from Greenbone: https://greenbone.github.io/docs/latest/22.4/container/troubleshooting.html
+
+## Troubleshooting
+If you forget the admin password, you may need to recreate the containers with the setup script so you can set a new password. The password the web admin user is in the postgres database, but I was unable to find a command to allow me to change this.
