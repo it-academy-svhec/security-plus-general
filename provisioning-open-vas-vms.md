@@ -86,3 +86,12 @@ If you want to avoid having to start up the containers each time, consider creat
     ```
     sudo shutdown now -r
     ```
+
+## Managing Vulnerability Feeds
+OpenVAS imports a large amount of CVE and other vulnerability definitions. This process can take a while to update when you first use OpenVAS. Periodically, OpenVAS will update the feeds and you can check the progress in the web portal.
+
+You can find the status under Administration > Feeds.
+
+If there are issues loading feeds, considering restarting the containers or systemd service if you configured that. Another option is to recreate the images with the previous setup instructions.
+
+Here is some troubleshooting guidance from Greenbone: https://greenbone.github.io/docs/latest/22.4/container/troubleshooting.html
