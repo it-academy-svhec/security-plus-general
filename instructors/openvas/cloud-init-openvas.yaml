@@ -63,9 +63,6 @@ runcmd:
   - chmod +x setup-and-start-greenbone-community-edition.sh
   - ./setup-and-start-greenbone-community-edition.sh
 
-  # Set admin password
-  - docker compose -f "/greenbone-community-container/docker-compose.yml exec -u gvmd gvmd gvmd --user=admin --new-password="820openvas"
-
   # Fix docker-compose binding
   - sed -i 's/127.0.0.1:9392/0.0.0.0:9392/' /greenbone-community-container/docker-compose.yml
 
@@ -74,3 +71,6 @@ runcmd:
   - systemctl daemon-reload
   - systemctl enable openvas.service
   - systemctl start openvas.service
+
+ # Set admin password
+  - docker compose -f /greenbone-community-container/docker-compose.yml exec -u gvmd gvmd gvmd --user=admin --new-password="820openvas"
