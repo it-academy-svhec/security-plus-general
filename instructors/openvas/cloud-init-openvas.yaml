@@ -33,7 +33,7 @@ runcmd:
   - mkdir -p /greenbone-community-container
 
   # Install dependencies
-  - apt-get install -y ca-certificates curl gnupg expect
+  - apt-get install -y ca-certificates curl gnupg
 
   # Remove conflicting Docker packages
   - |
@@ -58,26 +58,13 @@ runcmd:
   # Add 'ita' user to docker group
   - usermod -aG docker ita
 
-  # Download setup script
+  # Download and run setup script
   - curl -f -O https://greenbone.github.io/docs/latest/_static/setup-and-start-greenbone-community-edition.sh
   - chmod +x setup-and-start-greenbone-community-edition.sh
+  - ./setup-and-start-greenbone-community-edition.sh
 
-  # Create expect wrapper to set password
-  - |
-    cat <<'EOF' > /run-greenbone-expect.sh
-    #!/usr/bin/expect -f
-    set timeout -1
-    set password "820openvas"
-    spawn ./setup-and-start-greenbone-community-edition.sh
-    expect "Password for admin user:"
-    send "$password\r"
-    expect eof
-    EOF
-
-  - chmod +x /run-greenbone-expect.sh
-
-  # Run setup script via expect
-  - /run-greenbone-expect.sh
+  # Set admin password
+  - docker compose -f "/greenbone-community-container/docker-compose.yml exec -u gvmd gvmd gvmd --user=admin --new-password="820openvas"
 
   # Fix docker-compose binding
   - sed -i 's/127.0.0.1:9392/0.0.0.0:9392/' /greenbone-community-container/docker-compose.yml
