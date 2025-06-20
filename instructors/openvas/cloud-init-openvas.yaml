@@ -8,7 +8,30 @@ users:
     shell: /bin/bash
     groups: [docker, sudo]
 
+write_files:
+  - path: /etc/systemd/system/openvas.service
+    owner: root:root
+    permissions: '0644'
+    content: |
+      [Unit]
+      Description=OpenVAS Docker Compose
+      Requires=docker.service
+      After=docker.service
+
+      [Service]
+      Type=oneshot
+      WorkingDirectory=/greenbone-community-container
+      ExecStart=/usr/bin/docker compose up -d
+      ExecStop=/usr/bin/docker compose down
+      RemainAfterExit=yes
+
+      [Install]
+      WantedBy=multi-user.target
+
 runcmd:
+  # Ensure target directory exists
+  - mkdir -p /greenbone-community-container
+
   # Install dependencies
   - apt-get install -y ca-certificates curl gnupg expect
 
@@ -18,7 +41,7 @@ runcmd:
       apt-get remove -y $pkg || true
     done
 
-  # Set up the Docker repository
+  # Set up Docker repository
   - install -m 0755 -d /etc/apt/keyrings
   - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
   - chmod a+r /etc/apt/keyrings/docker.gpg
@@ -26,6 +49,7 @@ runcmd:
     sh -c 'echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg]
     https://download.docker.com/linux/ubuntu
     $(. /etc/os-release && echo "$VERSION_CODENAME") stable" > /etc/apt/sources.list.d/docker.list'
+
   - apt-get update
 
   # Install official Docker packages
@@ -49,37 +73,16 @@ runcmd:
     send "$password\r"
     expect eof
     EOF
+
   - chmod +x /run-greenbone-expect.sh
 
-  # Run setup with expect wrapper
+  # Run setup script via expect
   - /run-greenbone-expect.sh
 
-  # Fix docker-compose binding to allow external access
+  # Fix docker-compose binding
   - sed -i 's/127.0.0.1:9392/0.0.0.0:9392/' /greenbone-community-container/docker-compose.yml
 
-  # Start containers
-  - docker compose -f /greenbone-community-container/docker-compose.yml up -d
-
-  # Create a systemd service for OpenVAS
-  - |
-    cat <<EOF > /etc/systemd/system/openvas.service
-    [Unit]
-    Description=OpenVAS Docker Compose
-    Requires=docker.service
-    After=docker.service
-
-    [Service]
-    Type=oneshot
-    WorkingDirectory=/greenbone-community-container
-    ExecStart=/usr/bin/docker compose up -d
-    ExecStop=/usr/bin/docker compose down
-    RemainAfterExit=yes
-
-    [Install]
-    WantedBy=multi-user.target
-    EOF
-
-  # Enable and start the service
+  # Reload systemd and enable service
   - systemctl daemon-reexec
   - systemctl daemon-reload
   - systemctl enable openvas.service
