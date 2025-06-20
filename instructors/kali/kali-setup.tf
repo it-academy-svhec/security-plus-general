@@ -4,7 +4,7 @@ provider "azurerm" {
 }
 
 variable "vm_count" {
-  default = 1
+  default = 1 # Adjust as needed
 }
 
 resource "azurerm_resource_group" "student_kali" {
